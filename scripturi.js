@@ -28,7 +28,7 @@
 	
 		$.ajax({
 			type: "POST",
-			url: "http://lambert.go.ro/auto/php/trimitecomanda.php",
+			url: "http://lambert.go.ro/auto29/php/trimitecomanda.php",
 			data: {dataObj: JSON.stringify(dataObj)},
 			dataType: 'json',
 			success: function(respObj) {
@@ -64,7 +64,7 @@
 			
             $.ajax({
                 type: "POST",
-                url: "http://lambert.go.ro/auto/php/afisarecomanda.php",
+                url: "http://lambert.go.ro/auto29/php/afisarecomanda.php",
                 data: {dataObj: JSON.stringify(dataObj)},
                 dataType: 'json',
 				success: function(respObj) {
