@@ -419,4 +419,20 @@ caption{
 	text-align:center;
 	background-color:lightgrey;
 }	
-	
+
+
+
+#rezultate1 table, th,td
+{
+border: 1px solid #B2B2CC;
+border-collapse:collapse;
+padding:2px;
+}
+
+#rezultate1 table tr:nth-child(odd)
+{ background-color:white;
+}
+
+#rezultate1 table tr:nth-child(even)
+{ background-color:lightgrey;
+}
