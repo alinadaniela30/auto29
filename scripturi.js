@@ -111,10 +111,10 @@ function ValidareForm(dataObj){
 console.log(dataObj.Model)
 	
 	if(!filtrare_dataObj.Nume.test(dataObj.Nume))
-		erori[erori.length]="Nume invalid";
+		erori[erori.length]="Nume invalid, doar litere max 15";
 	
 	if(!filtrare_dataObj.Prenume.test(dataObj.Prenume))
-			erori[erori.length]="Prenume invalid";
+			erori[erori.length]="Prenume invalid, doar litere, max 15";
 	
 	if(!filtrare_dataObj.Strada.test(dataObj.Strada))
 		erori[erori.length]="Strada invalid";
@@ -126,25 +126,25 @@ console.log(dataObj.Model)
 		erori[erori.length]="Apartament invalid";
 	
 	if(!filtrare_dataObj.Oras.test(dataObj.Oras))
-		erori[erori.length]="Oras invalid";
+		erori[erori.length]="Oras invalid, doar litere max 15";
 	
 	if(!filtrare_dataObj.Judet.test(dataObj.Judet))
-		erori[erori.length]="Judet invalid";
+		erori[erori.length]="Judet invalid, doar litere max 15";
 	
 	if(!filtrare_dataObj.Telefon.test(dataObj.Telefon))
-		erori[erori.length]="Telefon invalid";
+		erori[erori.length]="Telefon invalid, maxim 10 cifre";
 	
 	if(!filtrare_dataObj.Email.test(dataObj.Email))
 		erori[erori.length]="Email invalid";
 
 	if(!filtrare_dataObj.Model.test(dataObj.Model))
-		erori[erori.length]="Model invalid";
+		erori[erori.length]="Model invalid, selectati un model auto";
 	
 	if(!filtrare_dataObj.Cantitate.test(dataObj.Cantitate))
-		erori[erori.length]="Cantitate invalid";
+		erori[erori.length]="Cantitate invalida, maxim 2 cifre";
 	
 	if(!filtrare_dataObj.Conditii.test(dataObj.Conditii))
-		erori[erori.length]="Conditii invalid";
+		erori[erori.length]="Conditii invalid, maxim 15 caractere";
 
 	
 	if(erori.length>0)
@@ -157,11 +157,74 @@ console.log(dataObj.Model)
 }
 function raportErori(erori)
 {
-	var atentiune="Ceva este gresit....";
+	var alerta="Date incorect completate";
 	for(i=0;i<erori.length;i++)
 	{
 		var numarErori=i+1;
-		atentiune +="\n"+numarErori+"."+erori[i];
+		alerta +="\n"+numarErori+"."+erori[i];
 	}
-	alert(atentiune);
+	alert(alerta);
 }
+
+
+
+$(document).ready(function() {
+	$("#calcul_consum").click(function() { 
+
+
+var capacity = {"data":[{"capacitate":"1,4","valoare":2},{"capacitate":"1,6","valoare":3},{"capacitate":"1,9","valoare":5}]};
+var fuel = {"data":[{"combustibil":"diesel","valoare":10},{"combustibil":"benzina","valoare":20},{"combustibil":"gpl","valoare":30}]};
+var category = {"data":[{"categoria":"urban","valoare":5},{"categoria":"extraurban","valoare":3},{"categoria":"mediu","valoare":10}]};
+
+var selCapacity = "", selFuel="",  selCategory="";
+var coefCapacity=1 , coefFuel=1 , coefCategory=1 ;
+
+if ($("#capacitate14").is(":checked")) 
+	selCapacity = $("#capacitate14").val();
+if ($("#capacitate16").is(":checked")) 
+	selCapacity = $("#capacitate16").val();
+if ($("#capacitate19").is(":checked")) 
+	selCapacity = $("#capacitate19").val();
+	
+for (var i=0; i < capacity.data.length; i++) {
+	var element =capacity.data[i];
+	if (element.capacity == selCapacity)
+		coefCapacity = element.valoare;
+}	
+
+
+if ($("#disel").is(":checked")) 
+	selFuel = $("#disel").val();
+if ($("#benzina").is(":checked")) 
+	selFuel = $("#benzina").val();
+if ($("#gpl").is(":checked")) 
+	selFuel = $("#gpl").val();
+	
+for (var i=0; i < fuel.data.length; i++) {
+	var element =fuel.data[i];
+	if (element.fuel == selFuel)
+		coefFuel = element.valoare;
+}	
+
+
+if ($("#drum_urban").is(":checked")) 
+	selCategory = $("#drum_urban").val();
+if ($("#drum_extra").is(":checked")) 
+	selCategory = $("#drum_extra").val();
+if ($("#drum_mediu").is(":checked")) 
+	selCategory = $("#drum_mediu").val();
+
+for (var i=0; i < category.data.length; i++) {
+	var element = category.data[i];
+	if (element.category == selCategory)
+		coefCategory = element.valoare;
+}	
+
+		rezultat = 2.5*coefCapacity + 3.4*coefFuel+1*coefCategory;
+	
+
+	$("#consum_auto").val(rezultat);
+	
+	});
+
+});
