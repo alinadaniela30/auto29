@@ -968,7 +968,7 @@
 	
 	<div data-role="main" class="principal">
 		<div class="continut" class="ui-content">
-			<form method="post" action="#">
+			<form method="post" action="#" name="form"  id="comenziForm">
 				<h2 style="text-align:center;">COMENZI</h2>
 				<div class="ui-field-contain" >
 						<label for="Nume">Numele:</label>
@@ -1004,6 +1004,7 @@
 						
 						<label for="Model">Modelul de masina comandat:</label>
 						<select name="Model" id="Model">
+									<option value="">Selectati modelul...</option>
 									<option value="arosa">Arosa</option>
 									<option value="alhambra">Alhambra</option>
 									<option value="cordobas">Cordobas</option>
@@ -1017,7 +1018,7 @@
 						
 		
 						<input type="button"  data-inline="true" value="Trimite comanda" onclick="trimiteinfo()">
-						<input type="reset"  data-inline="true" value="Reset">
+						<input type="reset"  data-inline="true" value="Reset" id="resetBtn">
 					
 					</div>	
 						
@@ -1025,7 +1026,7 @@
 			
 			</form>
 			
-			<a href="#" class="ui-btn ui-btn-inline ui-corner-all" onclick="afiseaza()">Afiseaza comenzi efectuate</a>
+			<a href="#" id="btnAfiseaza" class="ui-btn ui-btn-inline ui-corner-all" onclick="afiseaza()">Afiseaza comenzi efectuate</a>
 			<div id="rezultate1"></div>
 		</div>
 		<div class="meniu">

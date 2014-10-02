@@ -4,7 +4,7 @@
 	$respObj["statusMsg"] = "";
 	
 		// creare conexiune la mysqli server + db
-		$connex=mysqli_connect("localhost","root","MocanA78","comenzi");
+		$connex=mysqli_connect("localhost","root","Alina30","comenzi");
 		
 		// verifica conexiune
 		if(mysqli_connect_errno()) {
