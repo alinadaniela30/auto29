@@ -17,7 +17,7 @@ div .antet
 {
 		
 		height:5%;
-		background: url('http://goo.gl/79T1Zp');
+		background: url('img/topcar.gif');
 		background-size: 100% 100%;
 		background-repeat: no-repeat;
 		background-color:transparent;
@@ -424,7 +424,7 @@ caption{
 
 #rezultate1 table, th,td
 {
-border: 1px solid #B2B2CC;
+
 border-collapse:collapse;
 padding:2px;
 }
