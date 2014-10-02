@@ -20,17 +20,16 @@
 	}
 
 	$sqlquery="INSERT INTO formular (Nume, Prenume, Strada, Numar, Apt, Oras, Judet, Telefon, Email, Model, Cantitate, Conditii ) VALUES ('".$dataObj["Nume"]."','".$dataObj["Prenume"]."','".$dataObj["Strada"]."',".(string)$dataObj["Numar"].",".(string)$dataObj["Apt"].",'".$dataObj["Oras"]."','".$dataObj["Judet"]."',".(string)$dataObj["Telefon"].",'".$dataObj["Email"]."','".$dataObj["Model"]."',".(string)$dataObj["Cantitate"].",'".$dataObj["Conditii"]."') ; ";
+	error_log($sqlquery);
 	$result = mysqli_query($connex,$sqlquery);
-	if ($result)
-	{
-
-	
-			$respObj["statusMsg"] = "Comanda inregistrata cu succes";}
+	if ($result) {
+		$respObj["statusMsg"] = "Comanda inregistrata cu succes";
+	}
 			
-		 else {
-			$respObj["status"] = "ERROR";
-			$respObj["statusMsg"] = "Eroare la trimitere comanda!";
-				}		
+	 else {
+		$respObj["status"] = "ERROR";
+		$respObj["statusMsg"] = "Eroare la trimitere comanda!";
+	}		
 		
 
 				
