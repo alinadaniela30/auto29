@@ -45,34 +45,26 @@ var lAfiseaza = true;
 	function afiseaza() {
 		
 		if (lAfiseaza) {
-			var comenziHtml="", comenzi, comenziData;						
-			var dataObj={};
+			var comenziHtml="", comenziData;						
+			//var dataObj={};
 			
             $.ajax({
-                type: "POST",
+                type: "GET",
                 url: "http://lambert.go.ro/auto29/php/afisarecomanda.php",
-                data: {},
+                //data: {},
                 dataType: 'json',
 				success: function(respObj) {
 					if(respObj.status == "OK"){
 						// display info in form
 							
-						sessionStorage.setItem("comenzi",JSON.stringify(respObj));
-
-						if (typeof sessionStorage.comenzi != "undefined") {
-							comenzi = JSON.parse(sessionStorage.comenzi); 
-							comenziData = comenzi.data;
-							var comenziHtml="<table>"
-							for (var i=0; i < comenziData.length;i++) {
-							
-								comenziHtml +=	"<tr><td>"+comenziData[i].Nume+"</td><td> "+comenziData[i].Prenume+"</td><td> "+comenziData[i].Strada+"</td><td> "+comenziData[i].Numar+"</td><td> "+comenziData[i].Apt+"</td><td> "+comenziData[i].Oras+"</td><td> "+comenziData[i].Judet+"</td><td> "+comenziData[i].Telefon+"</td><td> "+comenziData[i].Email+"</td><td> "+comenziData[i].Model+"</td><td> "+comenziData[i].Cantitate+"</td><td> "+comenziData[i].Conditii+"</td></tr>";
-							}
-							comenziHtml +="</table>"	
-							document.getElementById("rezultate1").innerHTML=comenziHtml;
+						comenziData = respObj.data;
+						var comenziHtml="<table>"
+						for (var i=0; i < comenziData.length;i++) {
+							comenziHtml +=	"<tr><td>"+comenziData[i].Nume+"</td><td> "+comenziData[i].Prenume+"</td><td> "+comenziData[i].Strada+"</td><td> "+comenziData[i].Numar+"</td><td> "+comenziData[i].Apt+"</td><td> "+comenziData[i].Oras+"</td><td> "+comenziData[i].Judet+"</td><td> "+comenziData[i].Telefon+"</td><td> "+comenziData[i].Email+"</td><td> "+comenziData[i].Model+"</td><td> "+comenziData[i].Cantitate+"</td><td> "+comenziData[i].Conditii+"</td></tr>";
 						}
+						comenziHtml +="</table>"	
+						document.getElementById("rezultate1").innerHTML=comenziHtml;
 
-//						location.href = "#rezultate1";
-						
 					} 
 					else {
 						alert(respObj.statusMsg);
@@ -172,12 +164,12 @@ $(document).ready(function() {
 	$("#calcul_consum").click(function() { 
 
 
-var capacity = {"data":[{"capacitate":"1,4","valoare":2},{"capacitate":"1,6","valoare":3},{"capacitate":"1,9","valoare":5}]};
-var fuel = {"data":[{"combustibil":"diesel","valoare":10},{"combustibil":"benzina","valoare":20},{"combustibil":"gpl","valoare":30}]};
-var category = {"data":[{"categoria":"urban","valoare":5},{"categoria":"extraurban","valoare":3},{"categoria":"mediu","valoare":10}]};
+capacity = {"data":[{"capacitate":"1,4","valoare":2},{"capacitate":"1,6","valoare":3},{"capacitate":"1,9","valoare":5}]};
+fuel = {"data":[{"combustibil":"diesel","valoare":10},{"combustibil":"benzina","valoare":20},{"combustibil":"gpl","valoare":30}]};
+category = {"data":[{"categoria":"urban","valoare":5},{"categoria":"extraurban","valoare":3},{"categoria":"mediu","valoare":10}]};
 
-var selCapacity = "", selFuel="",  selCategory="";
-var coefCapacity=1 , coefFuel=1 , coefCategory=1 ;
+var selCapacity = "", selFuel = "",  selCategory = "";
+var coefCapacity = 0 , coefFuel = 0 , coefCategory = 0 ;
 
 if ($("#capacitate14").is(":checked")) 
 	selCapacity = $("#capacitate14").val();
@@ -187,22 +179,21 @@ if ($("#capacitate19").is(":checked"))
 	selCapacity = $("#capacitate19").val();
 	
 for (var i=0; i < capacity.data.length; i++) {
-	var element =capacity.data[i];
-	if (element.capacity == selCapacity)
+	var element = capacity.data[i];
+	if (element.capacitate == selCapacity)
 		coefCapacity = element.valoare;
 }	
 
-
-if ($("#disel").is(":checked")) 
-	selFuel = $("#disel").val();
+if ($("#diesel").is(":checked")) 
+	selFuel = $("#diesel").val();
 if ($("#benzina").is(":checked")) 
 	selFuel = $("#benzina").val();
 if ($("#gpl").is(":checked")) 
 	selFuel = $("#gpl").val();
 	
 for (var i=0; i < fuel.data.length; i++) {
-	var element =fuel.data[i];
-	if (element.fuel == selFuel)
+	var element = fuel.data[i];
+	if (element.combustibil == selFuel)
 		coefFuel = element.valoare;
 }	
 
@@ -216,11 +207,11 @@ if ($("#drum_mediu").is(":checked"))
 
 for (var i=0; i < category.data.length; i++) {
 	var element = category.data[i];
-	if (element.category == selCategory)
+	if (element.categoria == selCategory)
 		coefCategory = element.valoare;
 }	
 
-		rezultat = 2.5*coefCapacity + 3.4*coefFuel+1*coefCategory;
+	rezultat = 0.5 * coefCapacity + 0.4 * coefFuel + 0.1 * coefCategory;
 	
 
 	$("#consum_auto").val(rezultat);
